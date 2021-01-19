@@ -8,6 +8,8 @@ class Product
     protected $product_img;
     protected $product_quantity;
     protected $product_active;
+    static $category = "прочее";
+
     function __construct($product_code, $product_name, $product_price, $product_description, $product_img, $product_quantity, $product_active = 1) 
     {
         $this->product_code = $product_code;
@@ -50,36 +52,43 @@ class Product
                 {
                     $this->product_code = $value;
                 }
+                break;
             case 'product_name':
                 if(is_string($value))
                 {
                     $this->product_name = $value;
                 }
+                break;
             case 'product_price':
                 if(is_int($value) || is_float($value))
                 {
                     $this->product_price = $value;
                 }
+                break;
             case 'product_description':
                 if(is_string($value))
                 {
                     $this->product_description = $value;
                 }
+                break;
             case 'product_img':
                 if(is_string($value))
                 {
                     $this->product_img = $value;
                 }
+                break;
             case 'product_quantity':
                 if(is_numeric($value))
                 {
                     $this->product_quantity = $value;
                 }
+                break;
             case 'product_active':
                 if($value == 0 || $value == 1)
                 {
                     $this->product_active = $value;
                 }
+                break;
             
         }
     }
