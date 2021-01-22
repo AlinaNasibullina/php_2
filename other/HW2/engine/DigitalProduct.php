@@ -1,16 +1,15 @@
 <?php
-require_once '../engine/Product.php';
-define("DIGITAL_PRODUCT_COST", 100);
 
 class DigitalProduct extends Product
 {
     public static $cost;
+    const DIGITAL_PRODUCT_COST = 100;
 
     function __construct($productName, $quantity)
     {
         $this->productName = $productName;
         $this->quantity = $quantity;
-        self::$cost = DIGITAL_PRODUCT_COST;
+        self::$cost = self::DIGITAL_PRODUCT_COST;
     }
 
     function calculateCost(): float
@@ -20,6 +19,7 @@ class DigitalProduct extends Product
 
     public function showCalculateCost(): void
     {
-        echo "Общая стоимость товара " . $this->productName . ": " . $this->calculateCost() . " руб", PHP_EOL;
+        echo "Общая стоимость товара " . $this->productName . 
+        ": " . $this->calculateCost() . " руб", PHP_EOL;
     }
 }
