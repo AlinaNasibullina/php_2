@@ -1,0 +1,5 @@
+{% for picture in pictures %}
+    <a href="?id={{ picture['id'] }}">
+        <img class="smallImg" src="../img/{{ picture['part'] }}" alt="{{ picture['part'] }}" data-modal="{{ picture['part'] }}">
+    </a>
+{% endfor %}
