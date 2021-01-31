@@ -1,0 +1,72 @@
+<div class="container fetured__box">
+    <h3 class="fetured_items__h3">Fetured Items</h3>
+    <p class="fetured_items__span">Shop for items based on what we featured in this week</p>
+    <div class="fetured_items__content">
+        
+        
+        {% for product in products %}
+        <a class="fetured_items__link" id="{{ product['id'] }}">
+            <div class="hover_cart">
+                <form method="POST" action="addToCard.php">
+                    <input type="submit" value="Add to Cart">
+                    <input type="hidden" name="productId" value="{{ product["id"] }}">
+                </form>
+            </div>
+            <img src="{{ imgPath }}/{{ product['img'] }}" alt="{{ product['img'] }}">
+            <p>{{ product['product_name'] }}</p>
+            <div>
+                <p class="price">&#36;{{ product['product_price'] }}</p>
+                <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+            </div>
+        </a>
+        {% endfor %}
+  
+    </div>
+    <button name="AllProdict" class="button browseAllProduct" id="browseAllProduct" href="#">Browse All Product <i class="fas fa-long-arrow-alt-right"></i></button>
+</div>
+
+<script lang="text/javascript">
+    let count = 1;
+    $("#browseAllProduct").on("click", function getProduct(){
+        $.ajax({
+            url: "/engine/functional/browseCatalog.php",
+            method: "POST",
+            data: {'count': count},
+            success: function(response) {
+                count++;
+                console.log(response);
+                if(!(response == "")){
+                    JSON.parse(response).forEach(element => {
+                        $(".fetured_items__content").append(`
+                            <a class="fetured_items__link" id="${element['id']}">
+                                <div class="hover_cart">
+                                    <form method="POST" action="addToCard.php">
+                                        <input type="submit" value="Add to Cart">
+                                        <input type="hidden" name="productId" value="${element['id']}">
+                                    </form>
+                                </div>
+                                <img src="{{ imgPath }}/${element['img']}" alt="${element['img']}">
+                                <p>${element['product_name']}</p>
+                                <div>
+                                    <p class="price">&#36;${element['product_price']}</p>
+                                    <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+                                </div>
+                            </a>  
+                        `)
+                    });
+                } else {
+                    $("#browseAllProduct").hide();
+                }
+                
+            }
+        })
+        .fail(function( xhr, status, errorThrown ) {
+            alert( "Sorry, there was a problem!" );
+            console.log( "Error: " + errorThrown );
+            console.log( "Status: " + status );
+            console.dir( xhr );
+        })
+    });
+
+    
+</script>
