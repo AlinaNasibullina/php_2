@@ -3,26 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/styles/style.css">
     <script
         src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
         crossorigin="anonymous">
     </script>
+    <link rel="stylesheet" href="./styles/style.css">
     <script src="https://kit.fontawesome.com/861689887d.js" crossorigin="anonymous"></script>
-    <title>Brand shop</title>
+    <title>Brand shop - {% block title %}{% endblock %}</title>
 </head>
 <body>
-<div class="body_container">
-	
-    {% include "header.twig" %}
+    <div class="body_container">
+        {% include "header.twig" %}
 
-    {% include "topBanner.twig" %}
-    {# {% include "homeRange.twig" %} #}
-    {% include "catalog.twig" %}
-    {% include "homeOffer.twig" %}
-    
-    {% include "footer.twig" %}
-</div>
+        {% block content %}{% endblock %}
+        {% include "footer.twig" %}
+    </div>
 </body>
 </html>

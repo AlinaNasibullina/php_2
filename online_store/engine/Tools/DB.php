@@ -1,9 +1,9 @@
 <?php
 
 //namespace myApp\engine\Tools\DB; 
-namespace myApp\engine\Tools; 
+namespace myApp\Tools; 
 
-use myApp\engine\Tools\Singleton;
+use myApp\Tools\Singleton;
 use Throwable;
 use PDO;
 
@@ -13,12 +13,11 @@ final class DB
 
     const PRODUCT_TABEL = 'product';
     
-    private static $settings=[
-        'dsn' => 'mysql:host=localhost;dbname=shop_brand',
-        'user' => 'root',
-        'password' => 'root',
-    ];
     private $link;
+    public function getLink(): \PDO
+    {
+        return $this->link;
+    }
 
     public function getAllRow($tabelName) 
     {
@@ -52,15 +51,18 @@ final class DB
         }
     }
 
-    private function __construct()
+    public function __construct($config)
     {
-        $this->link = new PDO(
-            self::$settings['dsn'],
-            self::$settings['user'],
-            self::$settings['password']
-        );
-        if (false === $this->link) {
-            die("Can't connect to database");
-        }        
+        try {
+            $this->link = new \PDO(
+                $config['dsn'],
+                $config['user'],
+                $config['password']
+            );
+        } catch (Throwable $e) {
+            // die("Can't connect to database");
+            die($e->getMessage());
+
+        }     
     }
 }

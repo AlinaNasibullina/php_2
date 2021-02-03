@@ -1,6 +1,6 @@
 <?php
 
-namespace myApp\engine\Tools;
+namespace myApp\Tools;
 
 trait Singleton
 {
