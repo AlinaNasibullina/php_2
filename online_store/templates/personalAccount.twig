@@ -1,0 +1,19 @@
+{% extends "layout.twig" %}
+{% block title %}Presonal account{% endblock %}
+{% block content %}
+    <div>
+        <h3>Здравствуйте, {{ user_name }}</h3>
+        <p>На этой страничке отображаются ваши личные данные</p>
+        <p>Перейти на <a href="index">главную страницу</a></p>
+        <p>Посмотреть список <a href="./myAllOrders.php">всех заказов</a></p>
+        <a href="personalAccount/logout">Выйти</a>
+        <!-- <button id="logout">Выйти</button> -->
+        
+    </div>
+
+    // <script>
+    //     $('#logout').on('click', function() {
+    //         $ajax
+    //     })
+    // </script>
+{% endblock %}

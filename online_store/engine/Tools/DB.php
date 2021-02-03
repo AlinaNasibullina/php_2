@@ -30,13 +30,14 @@ final class DB
         }
     }
 
-    public function getOneRow($tabelName, $id) 
+    public function getOneRow($tabelName, $column_name, $column_value) 
     {
         try {
             return $this->link
-                ->query('SELECT * FROM ' . $tabelName . ' WHERE id = ' . $id )
-                ->fetchAll(PDO::FETCH_ASSOC);
+                ->query('SELECT * FROM ' . $tabelName . ' WHERE '. $column_name . ' = "' . $column_value . '"')
+                ->fetch(PDO::FETCH_ASSOC);
         } catch (Throwable $e) {
+            // return $e->getMessage();
             return false;
         }
     }
