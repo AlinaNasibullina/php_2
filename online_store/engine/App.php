@@ -19,19 +19,24 @@ final class App
 
     public function run()
     {
+        session_start();
+
         $this->db = new DB($this->config['db']);
 
         $path = $_SERVER['REQUEST_URI'];
-        [$url] = explode('?', $path);
-        $url = trim($url, '/');
-        [$controllerName, $actionName, $param] = explode('/', $url);
 
-        if (empty($controllerName)) {
-            $controllerName = 'index';
-        }
-        if (empty($actionName)) {
-            $actionName = 'index';
-        }
+        $router = new Router($this->config['routing']);
+        [$controllerName, $actionName, $param] = $router->parse($path);
+
+        // [$url] = explode('?', $path);
+        // $url = trim($url, '/');
+
+        // if (empty($controllerName)) {
+        //     $controllerName = 'index';
+        // }
+        // if (empty($actionName)) {
+        //     $actionName = 'index';
+        // }
 
         $controllerClass = 'MyApp\Controllers\\' . ucfirst($controllerName) . 'Controller';
         $methodName = 'action' . ucfirst($actionName);

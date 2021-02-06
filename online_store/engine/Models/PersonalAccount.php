@@ -2,28 +2,34 @@
 
 namespace MyApp\Models;
 
+use Throwable;
+
 class PersonalAccount extends Model
 {
-    const USERS_TABEL = 'users';
+    const TABEL = 'users';
 
     public $user;
 
-    // public static function getUser()
-    // {
-    //     return self::db()->getOneRow(self::USERS_TABEL, '');
-    // }
+    public static function getUser($user_name)
+    {
+        if (empty($user_name)) {
+            return "пусто";
+        }
+        
+        $stmt = self::link()->prepare('SELECT * FROM ' . self::TABEL . " WHERE user_name = :user_name LIMIT 1");
+        $stmt->bindParam(':user_name', $user_name, \PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
 
-    public static function login($user_name, $user_password)
+    public static function checkUser($user_name, $user_password)
     {
         if (empty($user_name) || empty($user_password)) {
-            echo "ничего нет";
-            return;
+            return false;
         }
 
-        $user = self::db()->getOneRow(self::USERS_TABEL, 'user_name', $user_name);
-        if (password_verify($user_password, $user['password_hash'])) {
-            return $user;
-        }
+        $user = self::getUser($user_name);
+        return password_verify($user_password, $user['password_hash']);
     }
     
 }

@@ -2,25 +2,18 @@
 
 namespace MyApp\Controllers;
 
+use MyApp\Auth;
 use MyApp\Models\PersonalAccount;
 
 class PersonalAccountController extends Controller
 {
     public function actionIndex()
     {
-        if (empty($_SESSION['user_name'])) {
-            // var_dump($_SESSION);
-            // var_dump($_POST);
-            // var_dump($user);
-            header('Location: personalAccount/login');
-            // $this->render('login.twig');
-            // // exit;
-            // $user = PersonalAccount::login($_POST['userName'], $_POST['userPassword']);
-            // $_SESSION['user_name'] = $user['user_name'];
-            // $_SESSION['user_id'] = $user['id'];
-
+        
+        if (empty(Auth::getUser())) {
+            $this->redirect('login');
         } else {
-            // $this->render('personalAccount.twig', ['user_name' => $_SESSION["user_name"]]);
+            $this->render('personalAccount.twig', ['user_name' => Auth::getUser()]);
         }
 
 
@@ -28,26 +21,25 @@ class PersonalAccountController extends Controller
 
     public function actionLogin()
     {
-        // echo "Хехей!";
-        $user = PersonalAccount::login($_POST['userName'], $_POST['userPassword']);
-        $_SESSION["user_name"] = $user['user_name'];
-        $_SESSION["user_id"] = $user['id'];
-        // var_dump($_SESSION);
-        // var_dump($_POST);
-        // var_dump($user);
-        $this->render('personalAccount.twig', ['user_name' => $_SESSION["user_name"], 'user' => $user]);
+        $error = false;
+        if(empty(Auth::getUser())) {
+            if (PersonalAccount::checkUser($_POST['userName'], $_POST['userPassword'])) {
+                Auth::login();
+                $this->redirect('personalAccount');
+            } else {
+                $error = true;
+                $this->render('login.twig', ['error' => $error]);
+            }
+        } else {
+            $this->redirect('personalAccount');
+        }
         
-        // $this->render('login.twig');
     }
 
     public function actionLogout()
     {
-        
-        unset($_SESSION['user_name']);
-        unset($_SESSION['user_id']);
+        Auth::logout();
 
-        if(empty($_SESSION['user_name']) && empty($_SESSION['user_id'])){
-            $this->render('login.twig');
-        }
+        $this->redirect('/');
     }
 }
