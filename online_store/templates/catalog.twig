@@ -5,12 +5,13 @@
         
         
         {% for product in products %}
-        <a class="fetured_items__link" id="{{ product['id'] }}">
+        <div class="fetured_items__link" id="{{ product['id'] }}">
             <div class="hover_cart">
-                <form method="POST" action="addToCard.php">
+                <a href="basket/add?id={{ product['id'] }}" class="addProductToCart">Add to Cart</a>
+                {# <form method="POST" action="addToCard.php">
                     <input type="submit" value="Add to Cart">
                     <input type="hidden" name="productId" value="{{ product["id"] }}">
-                </form>
+                </form> #}
             </div>
             <img src="{{ imgPath }}/{{ product['img'] }}" alt="{{ product['img'] }}">
             <p>{{ product['product_name'] }}</p>
@@ -18,7 +19,7 @@
                 <p class="price">&#36;{{ product['product_price'] }}</p>
                 <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
             </div>
-        </a>
+        </div>
         {% endfor %}
   
     </div>
@@ -34,7 +35,6 @@
             data: {'count': count},
             success: function(response) {
                 count++;
-                console.log(response);
                 if(!(response == "")){
                     JSON.parse(response).forEach(element => {
                         $(".fetured_items__content").append(`
@@ -67,6 +67,17 @@
             console.dir( xhr );
         })
     });
+
+    // $(".addProductToCart").on("click", function addToCart(){
+    //     $.ajax({
+    //         url: "BasketController",
+    //         method: "POST",
+    //         data: {'productId': this.dataset.id},
+    //         success: function(response) {
+    //             console.log(response);
+    //         }
+    //     })
+    // })
 
     
 </script>

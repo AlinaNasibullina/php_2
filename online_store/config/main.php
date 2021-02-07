@@ -7,9 +7,12 @@ return [
         'password' => 'root',
     ],
     'templates' => __DIR__ . '/../templates',
+
     'routing' => [
         'login' => 'personalAccount/login',
         'logout' => 'personalAccount/logout',
+        'orders' => 'admin/orders',
+        'change' => 'admin/change',
         '(\w+)\/(\w+)' => '<controller>/<action>',
         '(\w+)' => '<controller>/index',
         '^$' => 'index/index',

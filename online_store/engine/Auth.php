@@ -11,18 +11,6 @@ class Auth
         return $_SESSION['user_name'];
     }
 
-    // public static function checkUser()
-    // {
-    //     $user = PersonalAccount::getUser($_POST['userName'], $_POST['userPassword']);
-    //     if (!empty($user)) {
-    //         // $this->setUser($user);
-    //         // return $this->getUser();
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-
     public static function login()
     {   
         $user = PersonalAccount::getUser($_POST['userName'], $_POST['userPassword']);
@@ -35,4 +23,5 @@ class Auth
         unset($_SESSION['user_name']);
         unset($_SESSION['user_id']);
     }
+
 }
