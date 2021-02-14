@@ -10,6 +10,17 @@ class CatalogController extends Controller
     {
         $products = Catalog::getAllProduct();
 
-        $this->render('catalog.twig', ['products' => $products,]);
+        $this->render('catalog/catalog.twig', ['products' => $products,]);
+    }
+
+    public function actionProduct()
+    {
+        $product = Catalog::getProduct($_GET['id']);
+        $imgPath = Catalog::getImgPath();
+        if ($product) {
+            $this->render('catalog/product.twig', ['product' => $product, 'imgPath' => $imgPath]);
+        } else {
+            $this->redirect('/');
+        }
     }
 }

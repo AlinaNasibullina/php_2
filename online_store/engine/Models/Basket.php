@@ -13,7 +13,7 @@ class Basket extends Model
 
     public static function getTotalSum($basket_id)
     {
-        $basket = self::getBasketRows($basket_id);
+        $basket = static::getBasketRows($basket_id);
         $totalSum = 0;
         foreach($basket as $item) {
             $totalSum += ($item['product_count'] * $item['product_price']);

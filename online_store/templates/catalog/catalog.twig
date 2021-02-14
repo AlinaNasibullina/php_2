@@ -3,15 +3,11 @@
     <p class="fetured_items__span">Shop for items based on what we featured in this week</p>
     <div class="fetured_items__content">
         
-        
         {% for product in products %}
-        <div class="fetured_items__link" id="{{ product['id'] }}">
+        <a href="product?id={{ product['id'] }}" class="fetured_items__link" id="{{ product['id'] }}">
             <div class="hover_cart">
-                <a href="basket/add?id={{ product['id'] }}" class="addProductToCart">Add to Cart</a>
-                {# <form method="POST" action="addToCard.php">
-                    <input type="submit" value="Add to Cart">
-                    <input type="hidden" name="productId" value="{{ product["id"] }}">
-                </form> #}
+                <!-- <a href="basket/add?id={{ product['id'] }}" class="addProductToCart">Add to Cart</a> -->
+                <button class="addProductToCart" data-id="{{ product['id'] }}">Add to Cart</button>
             </div>
             <img src="{{ imgPath }}/{{ product['img'] }}" alt="{{ product['img'] }}">
             <p>{{ product['product_name'] }}</p>
@@ -19,7 +15,7 @@
                 <p class="price">&#36;{{ product['product_price'] }}</p>
                 <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
             </div>
-        </div>
+        </a>
         {% endfor %}
   
     </div>
@@ -68,16 +64,16 @@
         })
     });
 
-    // $(".addProductToCart").on("click", function addToCart(){
-    //     $.ajax({
-    //         url: "BasketController",
-    //         method: "POST",
-    //         data: {'productId': this.dataset.id},
-    //         success: function(response) {
-    //             console.log(response);
-    //         }
-    //     })
-    // })
+    $(".addProductToCart").on("click", function addToCart(){
+        $.ajax({
+            url: "basket/add?id=" + this.dataset.id,
+            method: "GET",
+            data: {'productId': this.dataset.id},
+            success: function(response) {
+                console.log(response);
+            }
+        })
+    })
 
     
 </script>

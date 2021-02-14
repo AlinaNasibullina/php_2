@@ -12,7 +12,7 @@ class PersonalAccount extends Model
     public static function getUser($user_name)
     {
         if (empty($user_name)) {
-            return "пусто";
+            return false;
         }
         
         $stmt = self::link()->prepare('SELECT * FROM ' . self::TABEL . " WHERE user_name = :user_name LIMIT 1");
@@ -28,6 +28,9 @@ class PersonalAccount extends Model
         }
 
         $user = self::getUser($user_name);
+        if ($user == false) {
+            return false;
+        }
         return password_verify($user_password, $user['password_hash']);
     }
 
