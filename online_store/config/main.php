@@ -13,6 +13,7 @@ return [
         'logout' => 'personalAccount/logout',
         'orders' => 'admin/orders',
         'change' => 'admin/change',
+        'product' => 'catalog/product',
         '(\w+)\/(\w+)' => '<controller>/<action>',
         '(\w+)' => '<controller>/index',
         '^$' => 'index/index',

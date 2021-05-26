@@ -17,26 +17,21 @@ final class App
         return $this->db;
     }
 
+    public function init()
+    {
+        $this->db = new DB($this->config['db']);
+    }
+
     public function run()
     {
+        $this->init();
         session_start();
 
-        $this->db = new DB($this->config['db']);
 
         $path = $_SERVER['REQUEST_URI'];
 
         $router = new Router($this->config['routing']);
         [$controllerName, $actionName, $param] = $router->parse($path);
-
-        // [$url] = explode('?', $path);
-        // $url = trim($url, '/');
-
-        // if (empty($controllerName)) {
-        //     $controllerName = 'index';
-        // }
-        // if (empty($actionName)) {
-        //     $actionName = 'index';
-        // }
 
         $controllerClass = 'MyApp\Controllers\\' . ucfirst($controllerName) . 'Controller';
         $methodName = 'action' . ucfirst($actionName);

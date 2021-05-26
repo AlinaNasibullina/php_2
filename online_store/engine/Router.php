@@ -37,7 +37,8 @@ class Router
         return false;
     }
 
-    private static function filter($url): string
+    // private static function filter($url): string 
+    public static function filter($url): string//dev
     {
         $parts = explode('/', $url);
 

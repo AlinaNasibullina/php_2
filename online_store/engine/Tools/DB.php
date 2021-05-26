@@ -60,6 +60,16 @@ final class DB
         }
     }
 
+    public function getOneActive ($tabelName, $id) {
+        try {
+            return $this->link
+            ->query('SELECT * FROM ' . $tabelName . ' WHERE active = 1 AND id = ' . $id)
+            ->fetch(\PDO::FETCH_ASSOC);
+        } catch (Throwable $e) {
+            return false;
+        }
+    }
+
     public function addRow($tabelName, $column_name, $column_value)
     {
         return $this->link

@@ -27,9 +27,11 @@ class BasketController extends Controller
     {
         if (Auth::getUser()) {
             if ($a = Basket::add($_GET['id'])) {
-                var_dump($a);
-                var_dump(Auth::getUser());
-                $this->redirect($_SERVER['HTTP_REFERER']);
+                // var_dump($a);
+                // var_dump(Auth::getUser());
+                // var_dump($_SERVER['HTTP_REFERER'] . '#' . $_GET['id']);
+                echo($_SERVER['HTTP_REFERER'] . '#' . $_GET['id']);
+                // $this->redirect($_SERVER['HTTP_REFERER'] . '#' . $_GET['id']);
             } else {
                 echo "не удалось добавить товар в корзину";
             }
