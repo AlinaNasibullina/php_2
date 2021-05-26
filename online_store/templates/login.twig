@@ -1,0 +1,28 @@
+{% extends "layout.twig" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+
+    <form name="authentication" method="POST">
+        <h3>Форма аутентификации</h3>
+        <lable>Введите имя пользователя</lable>
+        <input type="text" name="userName" placeholder="Иванов Иван">
+        <lable>Введите пароль</lable>
+        <input type="password" name="userPassword" placeholder="Какой-то пароль">
+        <input type="submit" value="Войти">
+    </form>
+    <!-- <p>Если у вас еще нет личного кабинета, можете зарегистрироваться в поле ниже</p>
+    <form name="registration" method="POST" action="toRegistration.php">
+        <h3>Форма регистрации пользователя</h3>
+        <label>Введите логин *</label>
+        <input type="text" name="userName">
+        <label>Введите полное имя</label>
+        <input type="text" name="userFullName">
+        <label>Введите пароль *</label>
+        <input type="password" name="userPassword" id="newUserPassword">
+        <label>Повторите пароль *</label>
+        <input type="password" name="userPasswordRepeat" id="newUserPasswordRepeat">
+        <input type="submit" value="Зарегестрироваться" name="toRegistration" id="toRegistration">
+    </form> -->
+    <p>Перейти на <a href="/">главную страницу</a></p>
+
+{% endblock %}

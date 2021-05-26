@@ -1,18 +1,18 @@
 <div class="header container">
-    <a href="index.php" class="logo">Bran<span>d</span></a>
+    <a href="index" class="logo">Bran<span>d</span></a>
     <div class="search--content">
         <form method="get" class="search">
             <input type="checkbox" name="Browse" id="Browse">
             <label  class="search__browse" for="Browse" id="buttonDropDownMenu">Browse <i class="fas fa-caret-down"></i></label>	
             <div class="search--menu" aria-labelledby="buttonDropDownMenu">
-                <?php
+                <!-- <?php
                     foreach($browseMenuItems as $head => $items) {
                         echo "<h3>$head<h3><div class=\"greyLine\"></div>";
                         foreach($items as $item) {
                             echo "<a href=\"#\">$item</a><br>";
                         }
                     }
-                ?>
+                ?> -->
             </div>
             <input type="text" name="search" placeholder="Search for Item...">
             <button><i class="fas fa-search"></i></button>
@@ -27,7 +27,7 @@
             <a href="ShoppingCart.php">Go to cart</a>
         </div>
     </div>
-    <button name="accountBar" class="header__account-bar"><a href="login.php">My Account <i class="fas fa-caret-down"></i></a></button>	
+    <button name="accountBar" class="header__account-bar"><a href="personalAccount">My Account <i class="fas fa-caret-down"></i></a></button>	
 </div>
 
 <div class="headerLine"></div>
