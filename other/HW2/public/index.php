@@ -1,8 +1,8 @@
 <?php
-//require '../engine/Product.php';
-require_once '../engine/PhisicalProduct.php';
-require_once '../engine/DigitalProduct.php';
-require_once '../engine/WeightProduct.php';
+require '../engine/Product.php';
+require '../engine/PhisicalProduct.php';
+require '../engine/DigitalProduct.php';
+require '../engine/WeightProduct.php';
 
 $p = new PhisicalProduct("книги", 20, 2, "шт.");
 $d = new DigitalProduct("видеокурс", 5);
