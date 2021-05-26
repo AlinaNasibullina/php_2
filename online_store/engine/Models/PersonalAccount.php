@@ -2,11 +2,10 @@
 
 namespace MyApp\Models;
 
-use Throwable;
-
 class PersonalAccount extends Model
 {
     const TABEL = 'users';
+    const ADMIN_ROLE = 1;
 
     public $user;
 
@@ -31,5 +30,24 @@ class PersonalAccount extends Model
         $user = self::getUser($user_name);
         return password_verify($user_password, $user['password_hash']);
     }
+
+    public static function checkUserRole($user_id)
+    {
+        $user = self::link()->query('SELECT role_id FROM ' . self::TABEL . ' WHERE id = ' . $user_id . ' LIMIT 1')->fetch(\PDO::FETCH_ASSOC);
+        if ($user['role_id'] == self::ADMIN_ROLE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
+    // public static function checkUser($user_id)
+    // {
+	// 		if($access_result){
+	// 			$row = mysqli_fetch_assoc($access_result);
+	// 			if($row['role_id'] != 1){
+	// 				header("Location: ./index.php");
+	// 			}
+	// 		}
+    // }
 }

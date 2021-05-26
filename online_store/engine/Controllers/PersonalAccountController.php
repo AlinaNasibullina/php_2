@@ -13,7 +13,7 @@ class PersonalAccountController extends Controller
         if (empty(Auth::getUser())) {
             $this->redirect('login');
         } else {
-            $this->render('personalAccount.twig', ['user_name' => Auth::getUser()]);
+            $this->render('account/personalAccount.twig', ['user_name' => Auth::getUser()]);
         }
 
 
@@ -28,7 +28,7 @@ class PersonalAccountController extends Controller
                 $this->redirect('personalAccount');
             } else {
                 $error = true;
-                $this->render('login.twig', ['error' => $error]);
+                $this->render('account/login.twig', ['error' => $error]);
             }
         } else {
             $this->redirect('personalAccount');

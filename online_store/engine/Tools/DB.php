@@ -10,8 +10,6 @@ use PDO;
 final class DB
 {
     use Singleton;
-
-    const PRODUCT_TABEL = 'product';
     
     private $link;
     public function getLink(): \PDO
@@ -42,14 +40,30 @@ final class DB
         }
     }
 
-    public function getAllActive($tabelName, $first_row = 0, $last_row = 2) {
+    // public function getAllActive($tabelName, $first_row = 0, $last_row = 2) {
+    //     try {
+    //         return $this->link
+    //             ->query('SELECT * FROM ' . $tabelName . ' WHERE active = 1 LIMIT ' . $first_row . ', ' . $last_row)
+    //             ->fetchAll(PDO::FETCH_ASSOC);
+    //     } catch (Throwable $e) {
+    //         return false;
+    //     }
+    // }
+
+    public function getAllActive ($tabelName) {
         try {
             return $this->link
-                ->query('SELECT * FROM ' . $tabelName . ' WHERE active = 1 LIMIT ' . $first_row . ', ' . $last_row)
-                ->fetchAll(PDO::FETCH_ASSOC);
+            ->query('SELECT * FROM ' . $tabelName . ' WHERE active = 1')
+            ->fetchAll(\PDO::FETCH_ASSOC);
         } catch (Throwable $e) {
             return false;
         }
+    }
+
+    public function addRow($tabelName, $column_name, $column_value)
+    {
+        return $this->link
+        ->query('INSERT INTO ' . $tabelName . ' (' . $column_name . ') VALUES (' . $column_value . ')');
     }
 
     public function __construct($config)
@@ -61,9 +75,7 @@ final class DB
                 $config['password']
             );
         } catch (Throwable $e) {
-            // die("Can't connect to database");
             die($e->getMessage());
-
         }     
     }
 }
