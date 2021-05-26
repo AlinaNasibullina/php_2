@@ -1,0 +1,14 @@
+{% extends "layout.twig" %}
+{% block title %}Presonal account{% endblock %}
+{% block content %}
+    <div>
+        <h3>Здравствуйте, {{ user_name }}</h3>
+        <p>На этой страничке отображаются ваши личные данные</p>
+        <p>Перейти на <a href="/">главную страницу</a></p>
+        <p>Посмотреть список <a href="./myAllOrders.php">всех заказов</a></p>
+        <a href="logout">Выйти</a>
+        
+    </div>
+
+   
+{% endblock %}

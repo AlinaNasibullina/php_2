@@ -1,0 +1,61 @@
+<div class="header container">
+    <a href="index" class="logo">Bran<span>d</span></a>
+    <div class="search--content">
+        <form method="get" class="search">
+            <input type="checkbox" name="Browse" id="Browse">
+            <label  class="search__browse" for="Browse" id="buttonDropDownMenu">Browse <i class="fas fa-caret-down"></i></label>	
+            <div class="search--menu" aria-labelledby="buttonDropDownMenu">
+                <!-- <?php
+                    foreach($browseMenuItems as $head => $items) {
+                        echo "<h3>$head<h3><div class=\"greyLine\"></div>";
+                        foreach($items as $item) {
+                            echo "<a href=\"#\">$item</a><br>";
+                        }
+                    }
+                ?> -->
+            </div>
+            <input type="text" name="search" placeholder="Search for Item...">
+            <button><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+
+    <div class="card--content">
+        <input type="checkbox" name="header__cart_link" id="header__cart_link">
+        <label for="header__cart_link" class="header__cart_link"><img src="img/cart.png" alt="cart" class="header__cart"></label>
+        <div class="card-link--dropDown">
+            <button id="checkout">Checkout</button>
+            <a href="ShoppingCart.php">Go to cart</a>
+        </div>
+    </div>
+    <button name="accountBar" class="header__account-bar"><a href="personalAccount">My Account <i class="fas fa-caret-down"></i></a></button>	
+</div>
+
+<div class="headerLine"></div>
+
+<nav class="topNav">
+    <div class="topNav__list"><a href="#">Home</a>
+        <div class="navLine"></div>
+    </div>
+    <div class="topNav__list"><a href="#">Man</a>
+        <div class="topNav--dropDown">
+        </div>
+        <div class="navLine"></div>
+    </div>
+    <div class="topNav__list"><a href="#">Women</a>
+        <div class="navLine"></div>
+        <div class="topNav--dropDown">
+        </div>
+    </div>
+    <div class="topNav__list"><a href="#">Kids</a>
+        <div class="navLine"></div>
+    </div>
+    <div class="topNav__list"><a href="#">Accoseriese</a>
+        <div class="navLine"></div>
+    </div>
+    <div class="topNav__list"><a href="#">Featured</a>
+        <div class="navLine"></div>
+    </div>
+    <div class="topNav__list"><a href="#">Hot Deals </a>
+        <div class="navLine"></div>
+    </div>
+</nav>
