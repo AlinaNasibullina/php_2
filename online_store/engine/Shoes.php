@@ -7,4 +7,5 @@ class Shoes extends Product
     {
         parent::__construct($product_code, $product_name, $product_price, $product_description, $product_img, $product_quantity, $product_active = 1);
     }
+
 }

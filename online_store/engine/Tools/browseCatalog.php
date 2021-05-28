@@ -1,7 +1,9 @@
 <?php
 
-namespace myApp\engine\Tools;
+namespace myApp\Tools;
 require './vendor/autoload.php';
+
+use myApp\Tools\DB;
 
 $count = $_POST['count'];
 $browseCount = 1;
